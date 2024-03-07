@@ -261,7 +261,12 @@ async function searchLinkedIn(query,page) {
 
 // raynechao tiffany-cheung-064475201 clara-chan-005a95260
 grabProfile('janae-t-189304179').then((res)=>{
-  console.log(res);
+  const ite = res["data"]["data"]["identityDashProfilesByMemberIdentity"]["*elements"][0];
+  // const ite = resjson["data"]["data"]["identityDashProfilesByMemberIdentity"]["*elements"][0];
+  const arr = ite.split(":");
+  const namecode= arr[arr.length-1];
+  console.log(namecode);
+  // console.log(res);
   // console.log(res['included']);
   // fs.writeFile("newData.json", JSON.stringify(res), function(err) {
   //   if (err) {
@@ -282,27 +287,27 @@ grabProfile('janae-t-189304179').then((res)=>{
 // });
 
 
-searchLinkedIn('HSBC').then((profileFetched)=>{
-  profileFetched.array.forEach(element => {
-    var userID = element['handle'];
-    grabProfile(userID).then((res)=>{
-      console.log(res);
-      // console.log(res['included']);
-      // fs.writeFile("newData.json", JSON.stringify(res), function(err) {
-      //   if (err) {
-      //       console.log(err);
-      //   }
-      // });
+// searchLinkedIn('HSBC').then((profileFetched)=>{
+//   profileFetched.array.forEach(element => {
+//     var userID = element['handle'];
+//     grabProfile(userID).then((res)=>{
+//       console.log(res);
+//       // console.log(res['included']);
+//       // fs.writeFile("newData.json", JSON.stringify(res), function(err) {
+//       //   if (err) {
+//       //       console.log(err);
+//       //   }
+//       // });
     
-    });
-  });
-  console.log(x);
-  // fs.writeFile("newData.json", JSON.stringify(x), function(err) {
-  //   if (err) {
-  //       console.log(err);
-  //   }
-  // });
-});
+//     });
+//   });
+//   console.log(x);
+//   // fs.writeFile("newData.json", JSON.stringify(x), function(err) {
+//   //   if (err) {
+//   //       console.log(err);
+//   //   }
+//   // });
+// });
 
 /**
  * 
@@ -334,3 +339,79 @@ fetch("https://www.linkedin.com/voyager/api/graphql?variables=(vanityName:tiffan
  * 
 
  */
+
+
+// fetch("https://www.linkedin.com/tscp-serving/dtag?sz=300x250&ti=1&p=1&c=1&z=profile&pk=d_flagship3_profile_view_base&pz=BR&vmid=ACoAAC0ahzQBHqO9XL-u_UIeJvqinhL4tZttLMU&_x=company%3D1033", {
+//   "headers": {
+//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+//     "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5",
+//     "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Google Chrome\";v=\"121\", \"Chromium\";v=\"121\"",
+//     "sec-ch-ua-mobile": "?0",
+//     "sec-ch-ua-platform": "\"macOS\"",
+//     "sec-fetch-dest": "iframe",
+//     "sec-fetch-mode": "navigate",
+//     "sec-fetch-site": "same-origin",
+//     "sec-fetch-user": "?1",
+//     "upgrade-insecure-requests": "1",
+//     "cookie": "bcookie=\"v=2&56ecbe24-5ca0-4401-8b51-95a92d142135\"; li_sugr=e7d77fb0-9c08-4cdd-a673-565e54caa9ba; bscookie=\"v=1&202301140234068fec3fc7-8421-4820-85a1-2a23b2249f4bAQEHi6nwR8lYx-5CM5I6jNI-p82_ufnC\"; li_rm=AQFSW6OadFckYwAAAYYNkDGhHQEPcFGgInqnnwm1wOC7nnFUpCFj5g6ZF6yFfLK1GHdVQ88B6uCdk_MuHNUYdCdKTQcZpk_uh1c40_oBoKewhmurjKsXzBUn; JSESSIONID=\"ajax:7050600770904385570\"; li_theme=light; li_theme_set=app; aam_uuid=04023600704087825090416880646503035353; timezone=Asia/Hong_Kong; lang=v=2&lang=en-us; AMCVS_14215E3D5995C57C0A495C55%40AdobeOrg=1; _gcl_au=1.1.297436632.1706086756; liap=true; at_check=true; s_cc=true; s_fid=741E177F2CC7F2B2-12D287DA3C6CA9BA; PLAY_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImZsb3dUcmFja2luZ0lkIjoidmRRb0s3VXZTa1NRNmp2Sm9DYWpzZz09In0sIm5iZiI6MTcwNjY2NjM2NiwiaWF0IjoxNzA2NjY2MzY2fQ.nzxjPjeGM0xn5k-WLhlC0M7h2g4AS5aMoEAGfLTEMRs; dfpfpt=013de286ac114ecabce6b52b52dbe41d; SID=012fec77-408f-48bb-aa77-0a9829d03ba1; VID=V_2024_02_05_05_848669; sdsc=1%3A1SZM1shxDNbLt36wZwCgPgvN58iw%3D; li_at=AQEDATdekkMFZYikAAABjV0-N4UAAAGNyZbBv1YAFszGy63NGYa0hDmJV1MMzlGQdiMubrCG9ObFSPu3Zc5VbryCH0ixnkhQO6qgmKBdwugkO3AASCIiL0rq7i4cDDkw7jR2UJp8Uch7QLiwlm102qKg; AnalyticsSyncHistory=AQK6wpF5T8KPbAAAAY2rvq4iII7K754DgwbKEWsn_Q6VLBRhsPa5tfOvjEsmTXh8ZWL6Eg0ughNpmUZIqW-v6A; lms_ads=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; lms_analytics=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; s_sq=%5B%5BB%5D%5D; _uetvid=f5db0cf0baa011eeac35d50fd8be6317; gpv_pn=developer.linkedin.com%2Fproduct-catalog; s_plt=3.23; s_pltp=developer.linkedin.com%2Fproduct-catalog; s_ips=5351; s_tp=5529; s_ppv=developer.linkedin.com%2Fproduct-catalog%2C97%2C97%2C5351%2C7%2C7; s_tslv=1708150339848; mbox=PC#7e55e93f0dd3416eaa1cc149f5e441f8.38_0#1723702341|session#2db29129b5fa46c28c8f35a9d87383c0#1708152201; AMCV_14215E3D5995C57C0A495C55%40AdobeOrg=-637568504%7CMCIDTS%7C19771%7CMCMID%7C03857168161155771900362013662220550674%7CMCAAMLH-1708837442%7C3%7CMCAAMB-1708837442%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1708239842s%7CNONE%7CvVersion%7C5.1.1%7CMCCIDH%7C235995707; fptctx2=taBcrIH61PuCVH7eNCyH0OPzOrGnaCb%252f7mTjN%252fuIW2tiC9s5U1uau5HBS9%252bCttJuIVXcjOudaOUpKehjxVu8ANYS2DeB6UbjTnmvEQ8xAGxzyA%252frFhcysCxPl0r89W4DfMEc3Ih46huQ56bFEhNFIigE%252bZtYwSKt9HonbhsFl7XCNgrAmBRTIdvcbIFAEi%252bdmsWlAcyW0jDzmwR6j7mXgUNQR%252btN7VD1HYmvZ6Ol%252fcotL9mJys1vH4ViX7%252fnCV2cLPVyH3CfSLp8y9jyw6zE7idPCwXDp23Dazx2LS%252fSB6VWfpyb3SlQy35tl9s4mCU6zsuL9NuaiQvt%252bT4SMvWK5Fqzjr2mprE1aiPrO5%252bQmiE%253d; li_mc=MTsyMTsxNzA4MjMzODM2OzE7MDIx5t4btlsBjhz/n4a3mRyNRjYiIpq7TNc7TjuIlAmVcGY=; UserMatchHistory=AQL9jMb6-FAzJAAAAY26q-Yy8qZvXtRhiFbCoTqxN0e98CgAUNaGJowA1qb20xx06rYqR0RNfkLZEVysLQm9h2vrG5noR8OiVKKqHZmMi3bRE6ZT4HBUBjbcuJYGAKmaXoerTAoplnLi8Q8gt-zuHJcuYa9c6S5K9NFBGRp7PNlxfwfXTSw6jc7Ao0rluJXtCdmTYxkxiODa-bWZjrq9P63Z_e1W86cN791dL-wGehN1GOmqXWKruhyxMfqii4MMuu62z2HwVIwbYbFfe2JJKE6k2jH8PYiHNL4CtKg-edgmATZwXcFik8qqZlNr9lmBsaLD6x6Z9fpg8_bqCgbAkvf_pYBA2bo; lidc=\"b=OB07:s=O:r=O:a=O:p=O:g=4254:u=280:x=1:i=1708233845:t=1708320236:v=2:sig=AQEW394kFl-4Z5HaIzt5xv7m7HInoq3Z\"",
+//     "Referer": "https://www.linkedin.com/in/leonwonglww/",
+//     "Referrer-Policy": "strict-origin-when-cross-origin"
+//   },
+//   "body": null,
+//   "method": "GET"
+// });
+// fetch("https://www.linkedin.com/tscp-serving/dtag?sz=300x250&ti=2&p=1&c=1&z=profile&pk=d_flagship3_profile_view_base&pz=BR&vmid=ACoAAC0ahzQBHqO9XL-u_UIeJvqinhL4tZttLMU", {
+//   "headers": {
+//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+//     "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5",
+//     "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Google Chrome\";v=\"121\", \"Chromium\";v=\"121\"",
+//     "sec-ch-ua-mobile": "?0",
+//     "sec-ch-ua-platform": "\"macOS\"",
+//     "sec-fetch-dest": "iframe",
+//     "sec-fetch-mode": "navigate",
+//     "sec-fetch-site": "same-origin",
+//     "upgrade-insecure-requests": "1",
+//     "cookie": "bcookie=\"v=2&56ecbe24-5ca0-4401-8b51-95a92d142135\"; li_sugr=e7d77fb0-9c08-4cdd-a673-565e54caa9ba; bscookie=\"v=1&202301140234068fec3fc7-8421-4820-85a1-2a23b2249f4bAQEHi6nwR8lYx-5CM5I6jNI-p82_ufnC\"; li_rm=AQFSW6OadFckYwAAAYYNkDGhHQEPcFGgInqnnwm1wOC7nnFUpCFj5g6ZF6yFfLK1GHdVQ88B6uCdk_MuHNUYdCdKTQcZpk_uh1c40_oBoKewhmurjKsXzBUn; JSESSIONID=\"ajax:7050600770904385570\"; li_theme=light; li_theme_set=app; aam_uuid=04023600704087825090416880646503035353; timezone=Asia/Hong_Kong; lang=v=2&lang=en-us; AMCVS_14215E3D5995C57C0A495C55%40AdobeOrg=1; _gcl_au=1.1.297436632.1706086756; liap=true; at_check=true; s_cc=true; s_fid=741E177F2CC7F2B2-12D287DA3C6CA9BA; PLAY_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImZsb3dUcmFja2luZ0lkIjoidmRRb0s3VXZTa1NRNmp2Sm9DYWpzZz09In0sIm5iZiI6MTcwNjY2NjM2NiwiaWF0IjoxNzA2NjY2MzY2fQ.nzxjPjeGM0xn5k-WLhlC0M7h2g4AS5aMoEAGfLTEMRs; dfpfpt=013de286ac114ecabce6b52b52dbe41d; SID=012fec77-408f-48bb-aa77-0a9829d03ba1; VID=V_2024_02_05_05_848669; sdsc=1%3A1SZM1shxDNbLt36wZwCgPgvN58iw%3D; li_at=AQEDATdekkMFZYikAAABjV0-N4UAAAGNyZbBv1YAFszGy63NGYa0hDmJV1MMzlGQdiMubrCG9ObFSPu3Zc5VbryCH0ixnkhQO6qgmKBdwugkO3AASCIiL0rq7i4cDDkw7jR2UJp8Uch7QLiwlm102qKg; AnalyticsSyncHistory=AQK6wpF5T8KPbAAAAY2rvq4iII7K754DgwbKEWsn_Q6VLBRhsPa5tfOvjEsmTXh8ZWL6Eg0ughNpmUZIqW-v6A; lms_ads=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; lms_analytics=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; s_sq=%5B%5BB%5D%5D; _uetvid=f5db0cf0baa011eeac35d50fd8be6317; gpv_pn=developer.linkedin.com%2Fproduct-catalog; s_plt=3.23; s_pltp=developer.linkedin.com%2Fproduct-catalog; s_ips=5351; s_tp=5529; s_ppv=developer.linkedin.com%2Fproduct-catalog%2C97%2C97%2C5351%2C7%2C7; s_tslv=1708150339848; mbox=PC#7e55e93f0dd3416eaa1cc149f5e441f8.38_0#1723702341|session#2db29129b5fa46c28c8f35a9d87383c0#1708152201; AMCV_14215E3D5995C57C0A495C55%40AdobeOrg=-637568504%7CMCIDTS%7C19771%7CMCMID%7C03857168161155771900362013662220550674%7CMCAAMLH-1708837442%7C3%7CMCAAMB-1708837442%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1708239842s%7CNONE%7CvVersion%7C5.1.1%7CMCCIDH%7C235995707; fptctx2=taBcrIH61PuCVH7eNCyH0OPzOrGnaCb%252f7mTjN%252fuIW2tiC9s5U1uau5HBS9%252bCttJuIVXcjOudaOUpKehjxVu8ANYS2DeB6UbjTnmvEQ8xAGxzyA%252frFhcysCxPl0r89W4DfMEc3Ih46huQ56bFEhNFIigE%252bZtYwSKt9HonbhsFl7XCNgrAmBRTIdvcbIFAEi%252bdmsWlAcyW0jDzmwR6j7mXgUNQR%252btN7VD1HYmvZ6Ol%252fcotL9mJys1vH4ViX7%252fnCV2cLPVyH3CfSLp8y9jyw6zE7idPCwXDp23Dazx2LS%252fSB6VWfpyb3SlQy35tl9s4mCU6zsuL9NuaiQvt%252bT4SMvWK5Fqzjr2mprE1aiPrO5%252bQmiE%253d; li_mc=MTsyMTsxNzA4MjMzODM2OzE7MDIx5t4btlsBjhz/n4a3mRyNRjYiIpq7TNc7TjuIlAmVcGY=; UserMatchHistory=AQL9jMb6-FAzJAAAAY26q-Yy8qZvXtRhiFbCoTqxN0e98CgAUNaGJowA1qb20xx06rYqR0RNfkLZEVysLQm9h2vrG5noR8OiVKKqHZmMi3bRE6ZT4HBUBjbcuJYGAKmaXoerTAoplnLi8Q8gt-zuHJcuYa9c6S5K9NFBGRp7PNlxfwfXTSw6jc7Ao0rluJXtCdmTYxkxiODa-bWZjrq9P63Z_e1W86cN791dL-wGehN1GOmqXWKruhyxMfqii4MMuu62z2HwVIwbYbFfe2JJKE6k2jH8PYiHNL4CtKg-edgmATZwXcFik8qqZlNr9lmBsaLD6x6Z9fpg8_bqCgbAkvf_pYBA2bo; lidc=\"b=OB07:s=O:r=O:a=O:p=O:g=4254:u=280:x=1:i=1708233845:t=1708320236:v=2:sig=AQEW394kFl-4Z5HaIzt5xv7m7HInoq3Z\"",
+//     "Referer": "https://www.linkedin.com/in/leonwonglww/",
+//     "Referrer-Policy": "strict-origin-when-cross-origin"
+//   },
+//   "body": null,
+//   "method": "GET"
+// });
+// fetch("https://www.linkedin.com/tscp-serving/dtag?sz=300x250&ti=2&p=1&c=1&z=profile&pk=d_flagship3_profile_view_base&pz=BR&vmid=ACoAAC0ahzQBHqO9XL-u_UIeJvqinhL4tZttLMU", {
+//   "headers": {
+//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+//     "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5",
+//     "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Google Chrome\";v=\"121\", \"Chromium\";v=\"121\"",
+//     "sec-ch-ua-mobile": "?0",
+//     "sec-ch-ua-platform": "\"macOS\"",
+//     "sec-fetch-dest": "iframe",
+//     "sec-fetch-mode": "navigate",
+//     "sec-fetch-site": "same-origin",
+//     "upgrade-insecure-requests": "1",
+//     "cookie": "bcookie=\"v=2&56ecbe24-5ca0-4401-8b51-95a92d142135\"; li_sugr=e7d77fb0-9c08-4cdd-a673-565e54caa9ba; bscookie=\"v=1&202301140234068fec3fc7-8421-4820-85a1-2a23b2249f4bAQEHi6nwR8lYx-5CM5I6jNI-p82_ufnC\"; li_rm=AQFSW6OadFckYwAAAYYNkDGhHQEPcFGgInqnnwm1wOC7nnFUpCFj5g6ZF6yFfLK1GHdVQ88B6uCdk_MuHNUYdCdKTQcZpk_uh1c40_oBoKewhmurjKsXzBUn; JSESSIONID=\"ajax:7050600770904385570\"; li_theme=light; li_theme_set=app; aam_uuid=04023600704087825090416880646503035353; timezone=Asia/Hong_Kong; lang=v=2&lang=en-us; AMCVS_14215E3D5995C57C0A495C55%40AdobeOrg=1; _gcl_au=1.1.297436632.1706086756; liap=true; at_check=true; s_cc=true; s_fid=741E177F2CC7F2B2-12D287DA3C6CA9BA; PLAY_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImZsb3dUcmFja2luZ0lkIjoidmRRb0s3VXZTa1NRNmp2Sm9DYWpzZz09In0sIm5iZiI6MTcwNjY2NjM2NiwiaWF0IjoxNzA2NjY2MzY2fQ.nzxjPjeGM0xn5k-WLhlC0M7h2g4AS5aMoEAGfLTEMRs; dfpfpt=013de286ac114ecabce6b52b52dbe41d; SID=012fec77-408f-48bb-aa77-0a9829d03ba1; VID=V_2024_02_05_05_848669; sdsc=1%3A1SZM1shxDNbLt36wZwCgPgvN58iw%3D; li_at=AQEDATdekkMFZYikAAABjV0-N4UAAAGNyZbBv1YAFszGy63NGYa0hDmJV1MMzlGQdiMubrCG9ObFSPu3Zc5VbryCH0ixnkhQO6qgmKBdwugkO3AASCIiL0rq7i4cDDkw7jR2UJp8Uch7QLiwlm102qKg; AnalyticsSyncHistory=AQK6wpF5T8KPbAAAAY2rvq4iII7K754DgwbKEWsn_Q6VLBRhsPa5tfOvjEsmTXh8ZWL6Eg0ughNpmUZIqW-v6A; lms_ads=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; lms_analytics=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; s_sq=%5B%5BB%5D%5D; _uetvid=f5db0cf0baa011eeac35d50fd8be6317; gpv_pn=developer.linkedin.com%2Fproduct-catalog; s_plt=3.23; s_pltp=developer.linkedin.com%2Fproduct-catalog; s_ips=5351; s_tp=5529; s_ppv=developer.linkedin.com%2Fproduct-catalog%2C97%2C97%2C5351%2C7%2C7; s_tslv=1708150339848; mbox=PC#7e55e93f0dd3416eaa1cc149f5e441f8.38_0#1723702341|session#2db29129b5fa46c28c8f35a9d87383c0#1708152201; AMCV_14215E3D5995C57C0A495C55%40AdobeOrg=-637568504%7CMCIDTS%7C19771%7CMCMID%7C03857168161155771900362013662220550674%7CMCAAMLH-1708837442%7C3%7CMCAAMB-1708837442%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1708239842s%7CNONE%7CvVersion%7C5.1.1%7CMCCIDH%7C235995707; fptctx2=taBcrIH61PuCVH7eNCyH0OPzOrGnaCb%252f7mTjN%252fuIW2tiC9s5U1uau5HBS9%252bCttJuIVXcjOudaOUpKehjxVu8ANYS2DeB6UbjTnmvEQ8xAGxzyA%252frFhcysCxPl0r89W4DfMEc3Ih46huQ56bFEhNFIigE%252bZtYwSKt9HonbhsFl7XCNgrAmBRTIdvcbIFAEi%252bdmsWlAcyW0jDzmwR6j7mXgUNQR%252btN7VD1HYmvZ6Ol%252fcotL9mJys1vH4ViX7%252fnCV2cLPVyH3CfSLp8y9jyw6zE7idPCwXDp23Dazx2LS%252fSB6VWfpyb3SlQy35tl9s4mCU6zsuL9NuaiQvt%252bT4SMvWK5Fqzjr2mprE1aiPrO5%252bQmiE%253d; li_mc=MTsyMTsxNzA4MjMzODM2OzE7MDIx5t4btlsBjhz/n4a3mRyNRjYiIpq7TNc7TjuIlAmVcGY=; UserMatchHistory=AQL9jMb6-FAzJAAAAY26q-Yy8qZvXtRhiFbCoTqxN0e98CgAUNaGJowA1qb20xx06rYqR0RNfkLZEVysLQm9h2vrG5noR8OiVKKqHZmMi3bRE6ZT4HBUBjbcuJYGAKmaXoerTAoplnLi8Q8gt-zuHJcuYa9c6S5K9NFBGRp7PNlxfwfXTSw6jc7Ao0rluJXtCdmTYxkxiODa-bWZjrq9P63Z_e1W86cN791dL-wGehN1GOmqXWKruhyxMfqii4MMuu62z2HwVIwbYbFfe2JJKE6k2jH8PYiHNL4CtKg-edgmATZwXcFik8qqZlNr9lmBsaLD6x6Z9fpg8_bqCgbAkvf_pYBA2bo; lidc=\"b=OB07:s=O:r=O:a=O:p=O:g=4254:u=280:x=1:i=1708233845:t=1708320236:v=2:sig=AQEW394kFl-4Z5HaIzt5xv7m7HInoq3Z\"",
+//     "Referer": "https://www.linkedin.com/in/leonwonglww/",
+//     "Referrer-Policy": "strict-origin-when-cross-origin"
+//   },
+//   "body": null,
+//   "method": "GET"
+// });
+// fetch("https://www.linkedin.com/tscp-serving/dtag?sz=300x250&ti=1&p=1&c=1&z=profile&pk=d_flagship3_profile_view_base&pz=BR&vmid=ACoAAC0ahzQBHqO9XL-u_UIeJvqinhL4tZttLMU&_x=company%3D1033", {
+//   "headers": {
+//     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+//     "accept-language": "en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-TW;q=0.6,ja;q=0.5",
+//     "sec-ch-ua": "\"Not A(Brand\";v=\"99\", \"Google Chrome\";v=\"121\", \"Chromium\";v=\"121\"",
+//     "sec-ch-ua-mobile": "?0",
+//     "sec-ch-ua-platform": "\"macOS\"",
+//     "sec-fetch-dest": "iframe",
+//     "sec-fetch-mode": "navigate",
+//     "sec-fetch-site": "same-origin",
+//     "upgrade-insecure-requests": "1",
+//     "cookie": "bcookie=\"v=2&56ecbe24-5ca0-4401-8b51-95a92d142135\"; li_sugr=e7d77fb0-9c08-4cdd-a673-565e54caa9ba; bscookie=\"v=1&202301140234068fec3fc7-8421-4820-85a1-2a23b2249f4bAQEHi6nwR8lYx-5CM5I6jNI-p82_ufnC\"; li_rm=AQFSW6OadFckYwAAAYYNkDGhHQEPcFGgInqnnwm1wOC7nnFUpCFj5g6ZF6yFfLK1GHdVQ88B6uCdk_MuHNUYdCdKTQcZpk_uh1c40_oBoKewhmurjKsXzBUn; JSESSIONID=\"ajax:7050600770904385570\"; li_theme=light; li_theme_set=app; aam_uuid=04023600704087825090416880646503035353; timezone=Asia/Hong_Kong; lang=v=2&lang=en-us; AMCVS_14215E3D5995C57C0A495C55%40AdobeOrg=1; _gcl_au=1.1.297436632.1706086756; liap=true; at_check=true; s_cc=true; s_fid=741E177F2CC7F2B2-12D287DA3C6CA9BA; PLAY_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImZsb3dUcmFja2luZ0lkIjoidmRRb0s3VXZTa1NRNmp2Sm9DYWpzZz09In0sIm5iZiI6MTcwNjY2NjM2NiwiaWF0IjoxNzA2NjY2MzY2fQ.nzxjPjeGM0xn5k-WLhlC0M7h2g4AS5aMoEAGfLTEMRs; dfpfpt=013de286ac114ecabce6b52b52dbe41d; SID=012fec77-408f-48bb-aa77-0a9829d03ba1; VID=V_2024_02_05_05_848669; sdsc=1%3A1SZM1shxDNbLt36wZwCgPgvN58iw%3D; li_at=AQEDATdekkMFZYikAAABjV0-N4UAAAGNyZbBv1YAFszGy63NGYa0hDmJV1MMzlGQdiMubrCG9ObFSPu3Zc5VbryCH0ixnkhQO6qgmKBdwugkO3AASCIiL0rq7i4cDDkw7jR2UJp8Uch7QLiwlm102qKg; AnalyticsSyncHistory=AQK6wpF5T8KPbAAAAY2rvq4iII7K754DgwbKEWsn_Q6VLBRhsPa5tfOvjEsmTXh8ZWL6Eg0ughNpmUZIqW-v6A; lms_ads=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; lms_analytics=AQFXzKAWpDJAMAAAAY2rvq8EKoWdDocsjZ148dNxYnUFyWXDDMrLnJ-T7ojHNvyKOi0DJXRiu7kV7F0Dw6SSanJvbZnoGHuU; s_sq=%5B%5BB%5D%5D; _uetvid=f5db0cf0baa011eeac35d50fd8be6317; gpv_pn=developer.linkedin.com%2Fproduct-catalog; s_plt=3.23; s_pltp=developer.linkedin.com%2Fproduct-catalog; s_ips=5351; s_tp=5529; s_ppv=developer.linkedin.com%2Fproduct-catalog%2C97%2C97%2C5351%2C7%2C7; s_tslv=1708150339848; mbox=PC#7e55e93f0dd3416eaa1cc149f5e441f8.38_0#1723702341|session#2db29129b5fa46c28c8f35a9d87383c0#1708152201; AMCV_14215E3D5995C57C0A495C55%40AdobeOrg=-637568504%7CMCIDTS%7C19771%7CMCMID%7C03857168161155771900362013662220550674%7CMCAAMLH-1708837442%7C3%7CMCAAMB-1708837442%7CRKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y%7CMCOPTOUT-1708239842s%7CNONE%7CvVersion%7C5.1.1%7CMCCIDH%7C235995707; fptctx2=taBcrIH61PuCVH7eNCyH0OPzOrGnaCb%252f7mTjN%252fuIW2tiC9s5U1uau5HBS9%252bCttJuIVXcjOudaOUpKehjxVu8ANYS2DeB6UbjTnmvEQ8xAGxzyA%252frFhcysCxPl0r89W4DfMEc3Ih46huQ56bFEhNFIigE%252bZtYwSKt9HonbhsFl7XCNgrAmBRTIdvcbIFAEi%252bdmsWlAcyW0jDzmwR6j7mXgUNQR%252btN7VD1HYmvZ6Ol%252fcotL9mJys1vH4ViX7%252fnCV2cLPVyH3CfSLp8y9jyw6zE7idPCwXDp23Dazx2LS%252fSB6VWfpyb3SlQy35tl9s4mCU6zsuL9NuaiQvt%252bT4SMvWK5Fqzjr2mprE1aiPrO5%252bQmiE%253d; li_mc=MTsyMTsxNzA4MjMzODM2OzE7MDIx5t4btlsBjhz/n4a3mRyNRjYiIpq7TNc7TjuIlAmVcGY=; UserMatchHistory=AQL9jMb6-FAzJAAAAY26q-Yy8qZvXtRhiFbCoTqxN0e98CgAUNaGJowA1qb20xx06rYqR0RNfkLZEVysLQm9h2vrG5noR8OiVKKqHZmMi3bRE6ZT4HBUBjbcuJYGAKmaXoerTAoplnLi8Q8gt-zuHJcuYa9c6S5K9NFBGRp7PNlxfwfXTSw6jc7Ao0rluJXtCdmTYxkxiODa-bWZjrq9P63Z_e1W86cN791dL-wGehN1GOmqXWKruhyxMfqii4MMuu62z2HwVIwbYbFfe2JJKE6k2jH8PYiHNL4CtKg-edgmATZwXcFik8qqZlNr9lmBsaLD6x6Z9fpg8_bqCgbAkvf_pYBA2bo; lidc=\"b=OB07:s=O:r=O:a=O:p=O:g=4254:u=280:x=1:i=1708233845:t=1708320236:v=2:sig=AQEW394kFl-4Z5HaIzt5xv7m7HInoq3Z\"",
+//     "Referer": "https://www.linkedin.com/in/leonwonglww/",
+//     "Referrer-Policy": "strict-origin-when-cross-origin"
+//   },
+//   "body": null,
+//   "method": "GET"
+// });
+
